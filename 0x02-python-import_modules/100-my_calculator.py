@@ -10,13 +10,17 @@ if __name__ == "__main__":
     b = int(sys.argv[3])
     match sys.argv[2]:
         case "+":
-            print("{0:d} + {1:d} = {2:d}".format(a, b, add(a, b)))
+            print("{} + {} = {}".format(a, b, add(a, b)))
+            sys.exit(0)
         case "-":
-            print("{0:d} - {1:d} = {2:d}".format(a, b, sub(a, b)))
+            print("{} - {} = {}".format(a, b, sub(a, b)))
+            sys.exit(0)
         case "*":
-            print("{0:d} * {1:d} = {2:d}".format(a, b, mul(a, b)))
+            print("{} * {} = {}".format(a, b, mul(a, b)))
+            sys.exit(0)
         case "/":
-            print("{0:d} / {1:d} = {2:d}".format(a, b, div(a, b)))
+            print("{} / {} = {}".format(a, b, div(a, b)))
+            sys.exit(0)
         case _:
             print("Unknown operator. Available operators: +, -, * and /")
             sys.exit(1)
