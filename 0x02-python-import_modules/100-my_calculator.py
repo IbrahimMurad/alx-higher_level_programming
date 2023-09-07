@@ -9,13 +9,13 @@ if __name__ == "__main__":
     a = int(sys.argv[1])
     b = int(sys.argv[3])
     match sys.argv[2]:
-        case '+':
+        case "+":
             print("{0:d} + {1:d} = {2:d}".format(a, b, add(a, b)))
-        case '-':
+        case "-":
             print("{0:d} - {1:d} = {2:d}".format(a, b, sub(a, b)))
-        case '*':
+        case "*":
             print("{0:d} * {1:d} = {2:d}".format(a, b, mul(a, b)))
-        case '/':
+        case "/":
             print("{0:d} / {1:d} = {2:d}".format(a, b, div(a, b)))
         case _:
             print("Unknown operator. Available operators: +, -, * and /")
