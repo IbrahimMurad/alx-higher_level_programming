@@ -68,7 +68,7 @@ int is_palindrome(listint_t **head)
 {
 	size_t len;
 	listint_t *daeh, *temp;
-	int i;
+	size_t i;
 
 	if (head == NULL || *head == NULL)
 	{
