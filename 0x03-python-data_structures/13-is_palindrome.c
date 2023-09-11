@@ -83,7 +83,7 @@ int is_palindrome(listint_t **head)
 	daeh = temp;
 	daeh = reverse_listint(&daeh);
 	temp = *head;
-	for (i = 0; i < len / 2 + 1; i++)
+	for (i = 0; i < len / 2; i++)
 	{
 		if (daeh->n != temp->n)
 		{
