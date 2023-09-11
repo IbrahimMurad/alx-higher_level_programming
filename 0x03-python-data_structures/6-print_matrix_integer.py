@@ -4,6 +4,6 @@ def print_matrix_integer(matrix=[[]]):
         row_len = len(row)
         if row_len == 0:
             return
-        for i in range(row_len - 1):
-            print("{:d}".format(row[i]), end=' ')
-        print("{:d}".format(row[row_len - 1]))
+        for i in row[:-1]:
+            print("{:d}".format(i), end=' ')
+        print("{:d}".format(row[-1]))
