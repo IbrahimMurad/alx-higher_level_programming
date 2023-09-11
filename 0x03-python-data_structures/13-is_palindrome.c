@@ -76,7 +76,7 @@ int is_palindrome(listint_t **head)
 	}
 	len = list_len(*head);
 	temp = *head;
-	for (i = 0; i < len / 2 + 1; i++)
+	for (i = 0; i < len / 2; i++)
 	{
 		temp = temp->next;
 	}
@@ -89,6 +89,8 @@ int is_palindrome(listint_t **head)
 		{
 			return (0);
 		}
+		daeh = daeh->next;
+		temp = temp->next;
 	}
 	return (1);
 }
