@@ -23,26 +23,38 @@ size_t list_len(listint_t *h)
 }
 
 /**
- * int_arr_palendrome - checks if an array of integers is a palindrome.
- * @p: a pointer to the array
- * @len: the length of the array
+ * reverse_listint - reverses a listint_t list
+ * @head: a pointer to a pointer to the first node in the list (the head)
  *
- * Return: 0 if it is not a palindrome, 1 if it is a palindrome
+ * Return: Nothing
  */
 
-
-int int_arr_palendrome(int *p, int len)
+listint_t *reverse_listint(listint_t **head)
 {
-	int i;
+	listint_t *before, *current, *after;
 
-	for (i = 0; i < len / 2; i++)
+	if (head == NULL || *head == NULL)
 	{
-		if (p[i] != p[len - i - 1])
-		{
-			return (0);
-		}
+		return (NULL);
 	}
-	return (1);
+	before = *head;
+	current = (*head)->next;
+	if (current == NULL)
+	{
+		return (*head);
+	}
+	before->next = NULL;
+	after = current->next;
+	current->next = before;
+	while (after)
+	{
+		before = current;
+		current = after;
+		after = after->next;
+		current->next = before;
+	}
+	*head = current;
+	return (*head);
 }
 
 /**
@@ -55,27 +67,28 @@ int int_arr_palendrome(int *p, int len)
 int is_palindrome(listint_t **head)
 {
 	size_t len;
-	listint_t *temp;
-	int *p, i = 0, is_arr_palendrome;
+	listint_t *daeh, *temp;
+	int i;
 
 	if (head == NULL || *head == NULL)
 	{
 		return (1);
 	}
 	len = list_len(*head);
-	p = (int *) malloc(sizeof(int) * len);
-	if (p == NULL)
-	{
-		return (0);
-	}
 	temp = *head;
-	while (temp)
+	for (i = 0; i < len / 2 + 1; i++)
 	{
-		p[i] = temp->n;
-		i++;
 		temp = temp->next;
 	}
-	is_arr_palendrome = int_arr_palendrome(p, len);
-	free(p);
-	return (is_arr_palendrome);
+	daeh = temp;
+	daeh = reverse_listint(&daeh);
+	temp = *head;
+	for (i = 0; i < len / 2 + 1; i++)
+	{
+		if (daeh->n != temp->n)
+		{
+			return (0);
+		}
+	}
+	return (1);
 }
