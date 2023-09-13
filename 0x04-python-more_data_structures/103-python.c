@@ -38,7 +38,7 @@ void print_python_list(PyObject *p)
 	Py_ssize_t i, list_size;
 	const char *mytype;
 
-	list_size = ((PyVarObject*)(ob))->ob_size;
+	list_size = ((PyVarObject*)(p))->ob_size;
 
 	printf("[*] Python list info\n");
 	printf("[*] Size of the Python List = %ld\n", list_size);
