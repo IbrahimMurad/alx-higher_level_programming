@@ -18,8 +18,12 @@ void print_python_bytes(PyObject *p)
 	mysize = PyBytes_Size(p);
 	printf("  size: %ld\n", mysize);
 	printf("  trying string: %s\n", str);
-	printf("  first 6 bytes: ");
-	for (i = 0; i < mysize && i < 9; i++)
+	if (mysize > 9)
+	{
+		mysize = 9;
+	}
+	printf("  first %ld bytes: ", mysize + 1);
+	for (i = 0; i < mysize; i++)
 	{
 		printf("%02hhx ", str[i]);
 	}
