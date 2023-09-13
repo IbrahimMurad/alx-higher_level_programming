@@ -11,14 +11,14 @@ void print_python_bytes(PyObject *p)
 	printf("[.] bytes object info\n");
 	if (!PyBytes_Check(p))
 	{
-		printf("  [ERROR] Invalid Bytes Object\n");
+		printf("  [ERROR] Invalid Bytes Object");
 		return;
 	}
 	str = ((PyBytesObject *) p)->ob_sval;
 	mysize = PyBytes_Size(p);
-	printf("size: %ld\n", mysize);
-	printf("trying string: %s\n", str);
-	printf("first 6 bytes: ");
+	printf("  size: %ld\n", mysize);
+	printf("  trying string: %s\n", str);
+	printf("  first 6 bytes: ");
 	for (i = 0; i < mysize && i < 9; i++)
 	{
 		printf("%02hhx ", str[i]);
