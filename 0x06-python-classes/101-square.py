@@ -66,7 +66,7 @@ class Square:
 
         str_to_print = ""
         if self.size == 0:
-            return "\n"
+            return str_to_print
         for y in range(self.position[1]):
             str_to_print += "\n"
         for i in range(self.size):
