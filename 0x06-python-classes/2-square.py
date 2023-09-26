@@ -11,7 +11,7 @@ class Square:
         """ This initializes the size value. """
 
         if type(size) is not int:
-            raise TypeError("sizemust be an integer")
+            raise TypeError("size must be an integer")
         elif size < 0:
             raise ValueError("size must be >= 0")
         else:
