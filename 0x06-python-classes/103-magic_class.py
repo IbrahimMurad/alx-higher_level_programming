@@ -1,6 +1,9 @@
 #!/usr/bin/python3
 import math
 
+""" This module defines a class names 'MagicClass' that holds
+the radius of a circle, and calculates its area and its circumference """
+
 
 class MagicClass:
     """ This class gets the radius and
