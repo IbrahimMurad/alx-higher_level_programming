@@ -80,6 +80,8 @@ class SinglyLinkedList:
 
         node_data = self.head
         str_to_print = ""
+        if node_data is None:
+            return str_to_print
         while node_data.next_node:
             str_to_print += str(node_data.data) + "\n"
             node_data = node_data.next_node
