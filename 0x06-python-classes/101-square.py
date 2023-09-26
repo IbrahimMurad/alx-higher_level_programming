@@ -61,6 +61,22 @@ class Square:
         else:
             raise TypeError("position must be a tuple of 2 positive integers")
 
+    def __str__(self):
+        """ This what makes this class printable. """
+
+        str_to_print = ""
+        if self.size == 0:
+            return "\n"
+        for y in range(self.position[1]):
+            str_to_print += "\n"
+        for i in range(self.size):
+            for x in range(self.position[0]):
+                str_to_print += " "
+            for j in range(self.size):
+                str_to_print += "#"
+            str_to_print += "\n"
+        return str_to_print[:-1]
+
 
 def is_valid_position(value):
     if type(value) is tuple:
