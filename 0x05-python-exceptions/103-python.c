@@ -40,6 +40,8 @@ void print_python_bytes(PyObject *p)
 
 void print_python_float(PyObject *p)
 {
+	double my_float;
+
 	printf("[.] float object info\n");
 	if (!PyFloat_CheckExact(p))
 	{
@@ -47,7 +49,15 @@ void print_python_float(PyObject *p)
 	}
 	else
 	{
-		printf("  value: %.16g\n", (((PyFloatObject *)(p))->ob_fval));
+		my_float = (((PyFloatObject *)(p))->ob_fval);
+		if (my_float == (int) (my_float))
+		{
+			printf("  value: %.1f\n", my_float);
+		}
+		else
+		{
+			printf("  value: %.16g\n", my_float);
+		}
 	}
 }
 
