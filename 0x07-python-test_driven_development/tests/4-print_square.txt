@@ -2,7 +2,7 @@ This document uses doctest to test the function print_square
 
 First, we import the function from the module
 
->>> print_square = __import__("4-print_square").print_square
+>>> print_square = __import__("5-print_square").print_square
 
 try the function
 

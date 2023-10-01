@@ -1,6 +1,7 @@
+#!/usr/bin/python3
 """
 This module defines a function that takes a string as an input
-and prints it with 2 new lines after each of 
+and prints it with 2 new lines after each of
 these characters: ., ? and :
 <text> must be a string otherwise raise TypeError
 There should be no space at the beginning or at the end of each printed line

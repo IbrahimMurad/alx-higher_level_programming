@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """
 This module defines a function that divides all elements of a matrix by number
 the matrix must be list of lists and the number is int or float
@@ -11,10 +12,12 @@ def matrix_divided(matrix, div):
     """
 
     if type(matrix) is not list:
-        raise TypeError("matrix must be a matrix (list of lists) of integers/floats")
+        raise TypeError("matrix must be a matrix (list of lists) \
+            of integers/floats")
     for row in matrix:
         if type(row) is not list:
-            raise TypeError("matrix must be a matrix (list of lists) of integers/floats")
+            raise TypeError("matrix must be a matrix (list of lists)\
+                of integers/floats")
     if not len(list(dict.fromkeys([len(row) for row in matrix]))) == 1:
         raise TypeError("Each row of the matrix must have the same size")
     if type(div) not in [int, float]:

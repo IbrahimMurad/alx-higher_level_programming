@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """
 This module defines a function that prints a square with the character #
 <size> is the side length of the square

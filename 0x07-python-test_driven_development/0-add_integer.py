@@ -1,8 +1,10 @@
-""" 
+#!/usr/bin/python3
+"""
 This module defines a function that adds two integer
 the two integers must be integers or floats
 otherwise through TypeError exception
 """
+
 
 def add_integer(a, b=98):
     """
