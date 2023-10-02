@@ -2,6 +2,7 @@
 """ This module defines a class named Rectangle
 that has width and height and can get the area and the perimeter
 of a rectangle with same width and height
+Also, it can print a rectangle of #
 """
 
 
@@ -15,6 +16,7 @@ class Rectangle:
     if <width> or <height> is less than 0, raise a ValueError
     Public instance method <area> that returns the rectangle area
     Public instance method <perimeter> that returns the rectangle perimeter
+    print() and str() can print the rectangle with the character #
     """
 
     @property
@@ -71,3 +73,19 @@ class Rectangle:
             return 0
         else:
             return 2 * (self.width + self.height)
+
+    def __str__(self):
+        """ returns the string that would be printed
+        if passed to print()
+        """
+
+        my_str = ""
+        if self.width == 0 or self.height == 0:
+            return my_str
+        row_str = ""
+        for i in range(self.width):
+            row_str += '#'
+        row_str += '\n'
+        for i in range(self.height):
+            my_str += row_str
+        return my_str[:-1]
