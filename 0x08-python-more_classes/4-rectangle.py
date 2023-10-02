@@ -3,7 +3,7 @@
 that has width and height and can get the area and the perimeter
 of a rectangle with same width and height
 Also, it can print a rectangle of #
-and has representation
+and can be recreated using string representation
 """
 
 

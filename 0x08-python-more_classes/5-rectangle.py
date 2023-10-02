@@ -3,7 +3,8 @@
 that has width and height and can get the area and the perimeter
 of a rectangle with same width and height
 Also, it can print a rectangle of #
-and has representation
+and can be recreated using string representation
+handles the destractors
 """
 
 
@@ -19,6 +20,7 @@ class Rectangle:
     Public instance method <perimeter> that returns the rectangle perimeter
     print() and str() can print the rectangle with the character #
     repr() returns the string used to recreate a new instance using eval()
+    print somethning when deleted
     """
 
     @property
