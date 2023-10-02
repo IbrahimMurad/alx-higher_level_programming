@@ -102,4 +102,6 @@ class Rectangle:
         return "Rectangle(" + str(self.width) + ', ' + str(self.height) + ')'
 
     def __del__(self):
+        """ prints a message when deleting an instance """
+
         print("Bye rectangle...")
