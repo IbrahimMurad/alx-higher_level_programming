@@ -33,4 +33,5 @@ class Rectangle(BaseGeometry):
         the string: [rectangle] <width>/<height>
         """
 
-        return "[{}] {}/{}".format(self.__class__.__name__, self.__width, self.__height)
+        self.__cn = self.__class__.__name__
+        return "[{}] {}/{}".format(self.__cn, self.__width, self.__height)
