@@ -1,4 +1,4 @@
-#!usr/bin/python3
+#!/usr/bin/python3
 """ In this module we define a class that inhirates from class list
 """
 
