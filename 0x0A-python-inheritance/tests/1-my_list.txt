@@ -16,3 +16,7 @@
 Traceback (most recent call last):
 ...
 TypeError: '<' not supported between instances of 'str' and 'int'
+
+>>> my_list = MyList(range(5))
+>>> my_list.print_sorted()
+[0, 1, 2, 3, 4]
