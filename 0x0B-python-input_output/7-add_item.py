@@ -11,5 +11,5 @@ try:
     to_add = load_from_json_file("add_item.json")
     to_add.extend(argv[1:])
     save_to_json_file(to_add, "add_item.json")
-except:
+except FileNotFoundError:
     save_to_json_file(argv[1:], "add_item.json")
