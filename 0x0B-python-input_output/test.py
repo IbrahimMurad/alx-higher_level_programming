@@ -1,6 +1,3 @@
-MyClass = __import__('8-my_class').MyClass
-m = MyClass("John")
-m.number = 89
-print(type(m))
-print(m)
-print(m.__dict__)
+my_dict = {'name': "Ahmed", 'age': 35, 'height': 170, 'male': True}
+sub = {key: val for key, val in my_dict.items() if key in ['name', 'male']}
+print(sub)
