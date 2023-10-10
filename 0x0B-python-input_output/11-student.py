@@ -37,6 +37,9 @@ class Student:
         """ replaces all attributes of the Student instance
         """
 
-        self.first_name = json["first_name"]
-        self.last_name = json["last_name"]
-        self.age = json["age"]
+        if "first_name" in list(json.keys()):
+            self.first_name = json["first_name"]
+        if "last_name" in list(json.keys()):
+            self.last_name = json["last_name"]
+        if "age" in list(json.keys()):
+            self.age = json["age"]
