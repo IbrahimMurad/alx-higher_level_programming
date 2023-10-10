@@ -2,9 +2,9 @@
 MyList = __import__('1-my_list').MyList
 
 my_list = MyList()
-my_list.append(1.0)
+my_list.append(True)
 my_list.append(4)
-my_list.append(2)
+my_list.append(0.5)
 my_list.append(3)
 my_list.append(5)
 print(my_list)

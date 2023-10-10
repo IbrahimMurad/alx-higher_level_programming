@@ -32,3 +32,12 @@ TypeError: '<' not supported between instances of 'int' and 'str'
 >>> my_list2.append(2)
 >>> my_list2.print_sorted()
 [1, 2, 3.0]
+
+>>> my_list = MyList()
+>>> my_list.append(True)
+>>> my_list.append(4)
+>>> my_list.append(0.5)
+>>> my_list.append(3)
+>>> my_list.append(5)
+>>> my_list.print_sorted()
+[0.5, True, 3, 4, 5]
