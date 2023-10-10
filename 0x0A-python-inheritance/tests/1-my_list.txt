@@ -27,3 +27,7 @@ TypeError: '<' not supported between instances of 'str' and 'int'
 >>> my_list.append(-13)
 >>> my_list.print_sorted()
 [-13, -2, -1, 1, 2]
+
+>>> my_list = MyList([3, 3, 3, 3])
+>>> my_list.print_sorted()
+[3, 3, 3, 3]
