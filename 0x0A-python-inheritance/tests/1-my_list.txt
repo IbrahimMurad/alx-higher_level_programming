@@ -25,3 +25,10 @@ TypeError: '<' not supported between instances of 'str' and 'int'
 Traceback (most recent call last):
 ...
 TypeError: '<' not supported between instances of 'int' and 'str'
+
+>>> my_list2 = MyList()
+>>> my_list2.append(3.0)
+>>> my_list2.append(1)
+>>> my_list2.append(2)
+>>> my_list2.print_sorted()
+[1, 2, 3.0]
