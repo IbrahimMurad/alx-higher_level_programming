@@ -25,7 +25,7 @@ class Student:
     def to_json(self, attrs=None):
         """ retrieves a dictionary representation of a Student instance """
 
-        if attrs is None or attrs == []:
+        if attrs is None:
             return self.__dict__
         else:
             dict_items = self.__dict__.items()
