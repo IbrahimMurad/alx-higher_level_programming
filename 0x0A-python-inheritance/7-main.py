@@ -7,7 +7,7 @@ bg.integer_validator(13, 12)
 bg.integer_validator("width", 89)
 
 try:
-    bg.integer_validator("name", "John")
+    bg.integer_validator(13, "John")
 except Exception as e:
     print("[{}] {}".format(e.__class__.__name__, e))
 
