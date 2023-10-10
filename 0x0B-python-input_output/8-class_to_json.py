@@ -14,5 +14,4 @@ def class_to_json(obj):
     (list, dictionary, string, integer and boolean)
     for JSON serialization of an object """
 
-    dict_str = dumps(obj.__dict__)
-    return loads(dict_str)
+   return obj.__dict__
