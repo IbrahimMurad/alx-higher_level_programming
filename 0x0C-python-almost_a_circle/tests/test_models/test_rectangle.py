@@ -405,7 +405,7 @@ class TestBase(unittest.TestCase):
         self.assertEqual(str(excpt.exception), excpt_msg)
 
     def test_Rectangle_c7(self):
-        """ Testing update method: with differenct values """
+        """ Testing update method (args): with differenct values """
 
         rect1 = Rectangle(10, 10, 10, 10)
         init_rect_dict = rect1.__dict__
@@ -425,6 +425,126 @@ class TestBase(unittest.TestCase):
         init_rect_dict['_Rectangle__y'] = 5
         self.assertEqual(rect1.__dict__, init_rect_dict)
 
+    def test_Rectangle_c8(self):
+        """ Testing update method (args): with bad values """
+
+        rect1 = Rectangle(10, 10, 10, 10)
+        with self.assertRaises(TypeError) as excpt:
+            rect1.update(10, '1')
+        excpt_msg = "width must be an integer"
+        self.assertEqual(str(excpt.exception), excpt_msg)
+        with self.assertRaises(TypeError) as excpt:
+            rect1.update(10, 2, '3')
+        excpt_msg = "height must be an integer"
+        self.assertEqual(str(excpt.exception), excpt_msg)
+        with self.assertRaises(TypeError) as excpt:
+            rect1.update(10, 2, 3, '4')
+        excpt_msg = "x must be an integer"
+        self.assertEqual(str(excpt.exception), excpt_msg)
+        with self.assertRaises(TypeError) as excpt:
+            rect1.update(89, 2, 3, 4, '5')
+        excpt_msg = "y must be an integer"
+        self.assertEqual(str(excpt.exception), excpt_msg)
+
+        rect1 = Rectangle(10, 10, 10, 10)
+        with self.assertRaises(ValueError) as excpt:
+            rect1.update(10, -2)
+        excpt_msg = "width must be > 0"
+        self.assertEqual(str(excpt.exception), excpt_msg)
+        with self.assertRaises(ValueError) as excpt:
+            rect1.update(10, 2, -3)
+        excpt_msg = "height must be > 0"
+        self.assertEqual(str(excpt.exception), excpt_msg)
+        with self.assertRaises(ValueError) as excpt:
+            rect1.update(10, 2, 3, -4)
+        excpt_msg = "x must be >= 0"
+        self.assertEqual(str(excpt.exception), excpt_msg)
+        with self.assertRaises(ValueError) as excpt:
+            rect1.update(89, 2, 3, 4, -5)
+        excpt_msg = "y must be >= 0"
+        self.assertEqual(str(excpt.exception), excpt_msg)
+
+    def test_Rectangle_c9(self):
+        """ Testing update method (kwargs): skipping kwargs """
+
+        rect1 = Rectangle(10, 10, 10, 10)
+        init_rect_dict = rect1.__dict__
+        rect1.update(89, 2, 3, 4, 5, id=13)
+        init_rect_dict['id'] = 89
+        self.assertEqual(rect1.__dict__, init_rect_dict)
+        rect1.update(89, 2, 3, 4, 5, width=13)
+        init_rect_dict['_Rectangle__width'] = 2
+        self.assertEqual(rect1.__dict__, init_rect_dict)
+        rect1.update(89, 2, 3, 4, 5, height=13)
+        init_rect_dict['_Rectangle__height'] = 3
+        self.assertEqual(rect1.__dict__, init_rect_dict)
+        rect1.update(89, 2, 3, 4, 5, x=13)
+        init_rect_dict['_Rectangle__x'] = 4
+        self.assertEqual(rect1.__dict__, init_rect_dict)
+        rect1.update(89, 2, 3, 4, 5, y=13)
+        init_rect_dict['_Rectangle__y'] = 5
+        self.assertEqual(rect1.__dict__, init_rect_dict)
+
+    def test_Rectangle_d0(self):
+        """ Testing update method (kwargs): using kwargs only """
+
+        rect1 = Rectangle(10, 10, 10, 10)
+        init_rect_dict = rect1.__dict__
+        rect1.update(id=1)
+        init_rect_dict['id'] = 10
+        self.assertEqual(rect1.__dict__, init_rect_dict)
+        rect1.update(width=2)
+        init_rect_dict['_Rectangle__width'] = 2
+        self.assertEqual(rect1.__dict__, init_rect_dict)
+        rect1.update(height=3)
+        init_rect_dict['_Rectangle__height'] = 3
+        self.assertEqual(rect1.__dict__, init_rect_dict)
+        rect1.update(x=4)
+        init_rect_dict['_Rectangle__x'] = 4
+        self.assertEqual(rect1.__dict__, init_rect_dict)
+        rect1.update(y=5)
+        init_rect_dict['_Rectangle__y'] = 5
+        self.assertEqual(rect1.__dict__, init_rect_dict)
+        rect1.update(id=11, width=12, height=13, x=14, y=15)
+        self.assertEqual(rect1.id, 11)
+        self.assertEqual(rect1.width, 12)
+        self.assertEqual(rect1.height, 13)
+        self.assertEqual(rect1.x, 14)
+        self.assertEqual(rect1.y, 15)
+        rect1.update(height=11, y=12, width=13, id=14, x=15)
+        self.assertEqual(rect1.id, 14)
+        self.assertEqual(rect1.width, 13)
+        self.assertEqual(rect1.height, 11)
+        self.assertEqual(rect1.x, 15)
+        self.assertEqual(rect1.y, 12)
+
+    def test_Rectangle_d1(self):
+        """ Testing update method (kwargs): using kwargs and args together """
+
+        rect1 = Rectangle(10, 10, 10, 10)
+        init_rect_dict = rect1.__dict__
+        rect1.update(13, width=2)
+        init_rect_dict['id'] = 13
+        init_rect_dict['_Rectangle__width'] = 2
+        self.assertEqual(rect1.__dict__, init_rect_dict)
+        rect1.update(13, 2, height=3)
+        init_rect_dict['_Rectangle__height'] = 3
+        self.assertEqual(rect1.__dict__, init_rect_dict)
+        rect1.update(13, 2, 3, x=4)
+        init_rect_dict['_Rectangle__x'] = 4
+        self.assertEqual(rect1.__dict__, init_rect_dict)
+        rect1.update(13, 2, 3, 4, y=5)
+        init_rect_dict['_Rectangle__y'] = 5
+        self.assertEqual(rect1.__dict__, init_rect_dict)
+
+    def test_Rectangle_d2(self):
+        """ Testing update method (kwargs): passing bad keys """
+
+        rect1 = Rectangle(10, 10, 10, 10)
+        init_rect_dict = rect1.__dict__
+        rect1.update(13, blah=2)
+        init_rect_dict['id'] = 13
+        self.assertEqual(rect1.__dict__, init_rect_dict)
 
 
 if __name__ == '__main__':
