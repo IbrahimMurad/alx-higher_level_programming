@@ -2,7 +2,7 @@
 """ In this module, we define Base class
 that has a private attribute and a constructor
 """
-import json
+json = __import__('json')
 
 
 class Base:
