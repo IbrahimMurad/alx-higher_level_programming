@@ -1,6 +1,7 @@
 import unittest
 from models.base import Base
 from models.rectangle import Rectangle
+from random import randrange
 
 class TestBase(unittest.TestCase):
      
@@ -251,6 +252,33 @@ class TestBase(unittest.TestCase):
             Rectangle.area()
         excpt_msg = "area() missing 1 required positional argument: 'self'"
         self.assertEqual(str(excpt.exception), excpt_msg)
+
+    def test_Rectangle_c0(self):
+        '''Tests area() method compuation.'''
+        r = Rectangle(5, 6)
+        self.assertEqual(r.area(), 30)
+        w = randrange(10) + 1
+        h = randrange(10) + 1
+        r.width = w
+        r.height = h
+        self.assertEqual(r.area(), w * h)
+        w = randrange(10) + 1
+        h = randrange(10) + 1
+        r = Rectangle(w, h, 7, 8, 9)
+        self.assertEqual(r.area(), w * h)
+        w = randrange(10) + 1
+        h = randrange(10) + 1
+        r = Rectangle(w, h, y=7, x=8, id=9)
+        self.assertEqual(r.area(), w * h)
+
+        r1 = Rectangle(3, 2)
+        self.assertEqual(r1.area(), 6)
+
+        r2 = Rectangle(2, 10)
+        self.assertEqual(r2.area(), 20)
+
+        r3 = Rectangle(8, 7, 0, 0, 12)
+        self.assertEqual(r3.area(), 56)
 
 if __name__ == '__main__':
     unittest.main()
