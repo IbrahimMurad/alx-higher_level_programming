@@ -21,135 +21,219 @@ class TestBase(unittest.TestCase):
     """ testing __init__ """
   
     # passing: width and height
+    def test_Rectangle_a0(self):
+        """ what is Rectangle """
+
+        self.assertEqual(str(Rectangle), "<class 'models.rectangle.Rectangle'>")
+
     def test_Rectangle_a1(self):
-        Rect1 = Rectangle(7, 9)
-        self.assertEqual(Rect1.id, 1)
-        self.assertEqual(Rect1.width, 7)
-        self.assertEqual(Rect1.height, 9)
-        self.assertEqual(Rect1.x, 0)
-        self.assertEqual(Rect1.y, 0)
-    
-    # passing only width, height and x
+        """ checking to ensure that Rectangle is a subclass of Base """
+
+        self.assertTrue(issubclass(Rectangle, Base))
+
     def test_Rectangle_a2(self):
-        Rect2 = Rectangle(7, 9, 4)
-        self.assertEqual(Rect2.id, 1)
-        self.assertEqual(Rect2.width, 7)
-        self.assertEqual(Rect2.height, 9)
-        self.assertEqual(Rect2.x, 4)
-        self.assertEqual(Rect2.y, 0)
-    
-    # passing only width, height x, and y
+        """ testing a call with 0 arguments (self excluded) """
+
+        with self.assertRaises(TypeError) as excpt:
+            my_rect = Rectangle()
+        excpt_msg = "__init__() missing 2 required positional arguments:"
+        excpt_msg += " 'width' and 'height'"
+        self.assertEqual(str(excpt.exception), excpt_msg)
+
     def test_Rectangle_a3(self):
-        Rect3 = Rectangle(7, 9, 4, 3)
-        self.assertEqual(Rect3.id, 1)
-        self.assertEqual(Rect3.width, 7)
-        self.assertEqual(Rect3.height, 9)
-        self.assertEqual(Rect3.x, 4)
-        self.assertEqual(Rect3.y, 3)
-    
-    # passing only width, height x, y and id
+        """ testing a call with 1 arguments (self excluded) """
+
+        with self.assertRaises(TypeError) as excpt:
+            my_rect = Rectangle(2)
+        excpt_msg = "__init__() missing 1 required positional argument:"
+        excpt_msg += " 'height'"
+        self.assertEqual(str(excpt.exception), excpt_msg)
+
+    def test_Rectangle_a3(self):
+        """ testing a call with more than required arguments
+        (self excluded) """
+
+        with self.assertRaises(TypeError) as excpt:
+            my_rect = Rectangle(2, 2, 3, 3, 5, 13)
+        excpt_msg = "__init__() takes from 3 to 6 positional arguments "
+        excpt_msg += "but 7 were given"
+        self.assertEqual(str(excpt.exception), excpt_msg)
+
     def test_Rectangle_a4(self):
-        Rect4 = Rectangle(7, 9, 4, 3, 11)
-        self.assertEqual(Rect4.id, 11)
-        self.assertEqual(Rect4.width, 7)
-        self.assertEqual(Rect4.height, 9)
-        self.assertEqual(Rect4.x, 4)
-        self.assertEqual(Rect4.y, 3)
-    
-    """ test attributes validation, by checking the rased error type
-    and the raised message """
-    
-    # passing width as float once then,
-    # passing it as string
+        """ testing the type of an instance """
+
+        my_rect = Rectangle(1, 1)
+        self.assertTrue(type(my_rect) is Rectangle)
+        self.assertTrue(isinstance(my_rect, Rectangle))
+        self.assertTrue(isinstance(my_rect, Base))
+        self.assertEqual(str(type(my_rect)), "<class 'models.rectangle.Rectangle'>")
+
+    def test_Rectangle_a5(self):
+        """ checing the default values and passed values """
+        
+        my_rect = Rectangle(12, 15)
+        my_rect_dict = {'id': 1, '_Rectangle__width': 12, '_Rectangle__height': 15,
+                        '_Rectangle__x': 0, '_Rectangle__y': 0}
+        self.assertEqual(my_rect.__dict__, my_rect_dict)
+        self.assertEqual(my_rect.id, 1)
+        self.assertEqual(my_rect.x, 0)
+        self.assertEqual(my_rect.y, 0)
+        self.assertEqual(my_rect.width, 12)
+        self.assertEqual(my_rect.height, 15)
+
+    def test_Rectangle_a6(self):
+        """ testing non-int width """
+
+        with self.assertRaises(TypeError) as excpt:
+            my_rect = Rectangle('2', 2)
+        excpt_msg = "width must be an integer"
+        self.assertEqual(str(excpt.exception), excpt_msg)
+        
+        with self.assertRaises(TypeError) as excpt:
+            my_rect = Rectangle(2.0, 2)
+        excpt_msg = "width must be an integer"
+        self.assertEqual(str(excpt.exception), excpt_msg)
+        
+        with self.assertRaises(TypeError) as excpt:
+            my_rect = Rectangle(2.0, 2.0)
+        excpt_msg = "width must be an integer"
+        self.assertEqual(str(excpt.exception), excpt_msg)
+
+    def test_Rectangle_a7(self):
+        """ testing non-int height """
+
+        with self.assertRaises(TypeError) as excpt:
+            my_rect = Rectangle(2, '2')
+        excpt_msg = "height must be an integer"
+        self.assertEqual(str(excpt.exception), excpt_msg)
+        
+        with self.assertRaises(TypeError) as excpt:
+            my_rect = Rectangle(2, 2.0)
+        excpt_msg = "height must be an integer"
+        self.assertEqual(str(excpt.exception), excpt_msg)
+
+    def test_Rectangle_a8(self):
+        """ testing non-int x """
+
+        with self.assertRaises(TypeError) as excpt:
+            my_rect = Rectangle(20, 12, '1')
+        excpt_msg = "x must be an integer"
+        self.assertEqual(str(excpt.exception), excpt_msg)
+        
+        with self.assertRaises(TypeError) as excpt:
+            my_rect = Rectangle(20, 12, 1.0)
+        excpt_msg = "x must be an integer"
+        self.assertEqual(str(excpt.exception), excpt_msg)
+
+    def test_Rectangle_a9(self):
+        """ testing non-int y """
+
+        with self.assertRaises(TypeError) as excpt:
+            my_rect = Rectangle(20, 12, 3, '1')
+        excpt_msg = "y must be an integer"
+        self.assertEqual(str(excpt.exception), excpt_msg)
+        
+        with self.assertRaises(TypeError) as excpt:
+            my_rect = Rectangle(20, 12, 4, 1.0)
+        excpt_msg = "y must be an integer"
+        self.assertEqual(str(excpt.exception), excpt_msg)
+
+    def test_Rectangle_b0(self):
+        """ testing unacceptable value of width """
+
+        with self.assertRaises(ValueError) as excpt:
+            my_rect = Rectangle(0, 2)
+        excpt_msg = "width must be > 0"
+        self.assertEqual(str(excpt.exception), excpt_msg)
+        
+        with self.assertRaises(ValueError) as excpt:
+            my_rect = Rectangle(-2, 2)
+        excpt_msg = "width must be > 0"
+        self.assertEqual(str(excpt.exception), excpt_msg)
+
     def test_Rectangle_b1(self):
-        with self.assertRaises(TypeError) as excpt:
-            Rect5 = Rectangle(7.0, 9, 1, 1, 3)
-        self.assertEqual(str(excpt.exception), "width must be an integer")
-        with self.assertRaises(TypeError) as excpt:
-            Rect6 = Rectangle('7', 9, 1, 1, 3)
-        self.assertEqual(str(excpt.exception), "width must be an integer")
-    
-    # passing height as float once then,
-    # passing it as string
+        """ testing unacceptable value of height """
+
+        with self.assertRaises(ValueError) as excpt:
+            my_rect = Rectangle(2, 0)
+        excpt_msg = "height must be > 0"
+        self.assertEqual(str(excpt.exception), excpt_msg)
+        
+        with self.assertRaises(ValueError) as excpt:
+            my_rect = Rectangle(2, -2)
+        excpt_msg = "height must be > 0"
+        self.assertEqual(str(excpt.exception), excpt_msg)
+
     def test_Rectangle_b2(self):
-        with self.assertRaises(TypeError) as excpt:
-            Rect7 = Rectangle(7, 9.0, 1, 1, 3)
-        self.assertEqual(str(excpt.exception), "height must be an integer")
-        with self.assertRaises(TypeError) as excpt:
-            Rect8 = Rectangle(7, '9', 1, 1, 3)
-        self.assertEqual(str(excpt.exception), "height must be an integer")
+        """ testing non-int x """
 
-    # passing x as float once then,
-    # passing it as string
+        with self.assertRaises(ValueError) as excpt:
+            my_rect = Rectangle(20, 12, -2)
+        excpt_msg = "x must be >= 0"
+        self.assertEqual(str(excpt.exception), excpt_msg)
+
     def test_Rectangle_b3(self):
-        with self.assertRaises(TypeError) as excpt:
-            Rect9 = Rectangle(7, 9, 1.0, 1, 3)
-        self.assertEqual(str(excpt.exception), "x must be an integer")
-        with self.assertRaises(TypeError) as excpt:
-            Rect10 = Rectangle(7, 9, '1', 1, 3)
-        self.assertEqual(str(excpt.exception), "x must be an integer")
+        """ testing non-int y """
 
-    # passing y as float once then,
-    # passing it as string
+        with self.assertRaises(ValueError) as excpt:
+            my_rect = Rectangle(20, 12, 3, -2)
+        excpt_msg = "y must be >= 0"
+        self.assertEqual(str(excpt.exception), excpt_msg)
+
     def test_Rectangle_b4(self):
-        with self.assertRaises(TypeError) as excpt:
-            Rect11 = Rectangle(7, 9, 1, 1.0, 3)
-        self.assertEqual(str(excpt.exception), "y must be an integer")
-        with self.assertRaises(TypeError) as excpt:
-            Rect12 = Rectangle(7, 9, 1, '1', 3)
-        self.assertEqual(str(excpt.exception), "y must be an integer")
+        """ comparing id value with _base__nb_objects """
+        
+        my_rect1 = Rectangle(5, 3, 2, 2)
+        my_rect2 = Rectangle(5, 3, 2, 2, 11)
+        self.assertEqual(my_rect1.id, getattr(Base, "_Base__nb_objects"))
+        self.assertEqual(getattr(Base, "_Base__nb_objects"), 1)
 
-    # passing width equals 0 once then,
-    # passing it as a negative number
     def test_Rectangle_b5(self):
-        with self.assertRaises(ValueError) as excpt:
-            Rect13 = Rectangle(0, 9, 1, 1, 3)
-        self.assertEqual(str(excpt.exception), "width must be > 0")
-        with self.assertRaises(ValueError) as excpt:
-            Rect14 = Rectangle(-2, 9, 1, 1, 3)
-        self.assertEqual(str(excpt.exception), "width must be > 0")
+        """ checing the passed values non-keyworded """
+        
+        my_rect = Rectangle(12, 15, 40, 20, 5248)
+        my_rect_dict = {'id': 5248, '_Rectangle__width': 12, '_Rectangle__height': 15,
+                        '_Rectangle__x': 40, '_Rectangle__y': 20}
+        self.assertEqual(my_rect.__dict__, my_rect_dict)
+        self.assertEqual(my_rect.id, 5248)
+        self.assertEqual(my_rect.x, 40)
+        self.assertEqual(my_rect.y, 20)
+        self.assertEqual(my_rect.width, 12)
+        self.assertEqual(my_rect.height, 15)
 
-    # passing height equals 0 once then,
-    # passing it as a negative number
     def test_Rectangle_b6(self):
-        with self.assertRaises(ValueError) as excpt:
-            Rect15 = Rectangle(7, 0, 1, 2, 3)
-        self.assertEqual(str(excpt.exception), "height must be > 0")
-        with self.assertRaises(ValueError) as excpt:
-            Rect16 = Rectangle(7, -3, 1, 2, 3)
-        self.assertEqual(str(excpt.exception), "height must be > 0")
+        """ checing the passed values keyworded """
+        
+        my_rect = Rectangle(12, 15, x=40, y=20, id=5248)
+        my_rect_dict = {'id': 5248, '_Rectangle__width': 12, '_Rectangle__height': 15,
+                        '_Rectangle__x': 40, '_Rectangle__y': 20}
+        self.assertEqual(my_rect.__dict__, my_rect_dict)
+        self.assertEqual(my_rect.id, 5248)
+        self.assertEqual(my_rect.x, 40)
+        self.assertEqual(my_rect.y, 20)
+        self.assertEqual(my_rect.width, 12)
+        self.assertEqual(my_rect.height, 15)
 
-    # passing x as a negative number
     def test_Rectangle_b7(self):
-        with self.assertRaises(ValueError) as excpt:
-            Rect17 = Rectangle(7, 9, -3, 1, 3)
-        self.assertEqual(str(excpt.exception), "x must be >= 0")
-    
-    # passing y as a negative number
+        """ checing the id value after setting it from Base """
+        
+        Base._Base__nb_objects = 99
+        my_rect = Rectangle(12, 15)
+        self.assertEqual(my_rect.id, 100)
+        self.assertEqual(my_rect.id, getattr(Base, "_Base__nb_objects"))
+
     def test_Rectangle_b8(self):
-        with self.assertRaises(ValueError) as excpt:
-            Rect18 = Rectangle(7, 9, 1, -10, 3)
-        self.assertEqual(str(excpt.exception), "y must be >= 0")
-    
-    # initializing with zero argument
-    def test_Rectangle_b9(self):
-        with self.assertRaises(TypeError):
-            rect19 = Rectangle()
-    
-    # initializing with one argument
-    def test_Rectangle_91(self):
-        with self.assertRaises(TypeError):
-            rect19 = Rectangle(7)
+        """ checking getter and setter """
 
-    """ test area method """
-    
-    # normal and large numbers
-    def test_Rectangle_c1(self):
-        rect20 = Rectangle(3, 2)
-        self.assertEqual(rect20.area(), 6)
-        rect21 = Rectangle(20, 10)
-        self.assertEqual(rect21.area(), 200)
-
+        my_rect = Rectangle(1, 2, 3, 4)
+        my_rect.width = 11
+        my_rect.height = 12
+        my_rect.x = 13
+        my_rect.y = 14
+        self.assertEqual(my_rect.width, 11)
+        self.assertEqual(my_rect.height, 12)
+        self.assertEqual(my_rect.x, 13)
+        self.assertEqual(my_rect.y, 14)
 
 if __name__ == '__main__':
     unittest.main()
