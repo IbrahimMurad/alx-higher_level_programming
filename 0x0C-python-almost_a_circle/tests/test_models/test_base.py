@@ -1,6 +1,8 @@
 """ This module is a test suit for Base class """
 import unittest
 from models.base import Base
+from models.rectangle import Rectangle
+from models.square import Square
 
 
 class TestBase(unittest.TestCase):
@@ -116,10 +118,52 @@ class TestBase(unittest.TestCase):
         self.assertEqual(my_base.id, theValue)
 
     def test_Base_b2(self):
+        """ testing to_json_string method: empty list """
+
+        my_base = Base(2)
+        self.assertEqual(Base.to_json_string([]), "[]")
+
+    def test_Base_b3(self):
         """ testing to_json_string method: zero arguments """
 
         my_base = Base(2)
-        self.assertEqual(Base.to_json_string(), "[]")
+        with self.assertRaises(TypeError) as excpt:
+            Base.to_json_string()
+        excpt_msg = "to_json_string() missing 1 required positional argument: 'list_dictionaries'"
+        self.assertEqual(str(excpt.exception), excpt_msg)
+
+    def test_Base_b4(self):
+        """ testing to_json_string method: None argument """
+
+        my_base = Base(2)
+        self.assertEqual(Base.to_json_string(None), "[]")
+
+    def test_Base_b5(self):
+        """ testing to_json_string method: 1 dictionary list """
+
+        my_base = Base()
+        self.assertEqual(Base.to_json_string([{'a': 1, 'b': 2}]), '[{"a": 1, "b": 2}]')
+        r1 = Rectangle(10, 7, 2, 8)
+        dictionary = r1.to_dictionary()
+        my_out = '[{"id": 2, "width": 10, "height": 7, "x": 2, "y": 8}]'
+        self.assertEqual(Base.to_json_string([dictionary]), my_out)
+
+    def test_Base_b6(self):
+        """ testing to_json_string method: multiple dictionary list """
+
+        my_base = Base()
+        my_list = [{'a': 1, 'b': 2}]
+        my_out = '[{"a": 1, "b": 2}, '
+        r1 = Rectangle(10, 7, 2, 8)
+        dictionary = r1.to_dictionary()
+        my_list.append(dictionary)
+        my_out += '{"id": 2, "width": 10, "height": 7, "x": 2, "y": 8}, '
+        s1 = Square(10, 2, 8)
+        dictionary2 = s1.to_dictionary()
+        my_list.append(dictionary2)
+        my_out += '{"id": 3, "size": 10, "x": 2, "y": 8}]'
+        self.assertEqual(Base.to_json_string(my_list), my_out)
+
 
 if __name__ == '__main__':
     unittest.main()
