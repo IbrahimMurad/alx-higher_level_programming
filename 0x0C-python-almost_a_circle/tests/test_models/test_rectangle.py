@@ -368,6 +368,14 @@ class TestBase(unittest.TestCase):
                   #####\n"
         self.assertEqual(my_IO.getvalue(), my_out)
 
+    def test_Rectangle_c4(self):
+        """ Testing __str__: without passing self """
+
+        my_rect = Rectangle(1,1, 1, 1)
+        with self.assertRaises(TypeError) as excpt:
+            Rectangle.__str__()
+        excpt_msg = "__str__() missing 1 required positional argument: 'self'"
+        self.assertEqual(str(excpt.exception), excpt_msg)
 
 if __name__ == '__main__':
     unittest.main()
