@@ -115,6 +115,11 @@ class TestBase(unittest.TestCase):
         my_base = Base(theValue)
         self.assertEqual(my_base.id, theValue)
 
+    def test_Base_b2(self):
+        """ testing to_json_string method: zero arguments """
+
+        my_base = Base(2)
+        self.assertEqual(Base.to_json_string(), "[]")
 
 if __name__ == '__main__':
     unittest.main()
