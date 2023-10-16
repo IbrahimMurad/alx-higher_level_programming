@@ -136,10 +136,10 @@ class TestBase(unittest.TestCase):
         self.assertEqual(rect21.area(), 200)
 
 
-    """ test area display """
+    """ test display method """
     
     # normal and large numbers
-    def test_Rectangle_c2(self):
+    def test_Rectangle_d1(self):
         rect22 = Rectangle(3, 2)
         self.assertEqual(rect22.display(), 6)
         rect23 = Rectangle(20, 10)
