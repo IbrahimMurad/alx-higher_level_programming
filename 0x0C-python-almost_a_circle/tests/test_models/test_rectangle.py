@@ -546,6 +546,23 @@ class TestBase(unittest.TestCase):
         init_rect_dict['id'] = 13
         self.assertEqual(rect1.__dict__, init_rect_dict)
 
+    def test_Rectangle_d3(self):
+        """ Testing to_dictionary method: without self argument """
+
+        with self.assertRaises(TypeError) as excpt:
+            Rectangle.to_dictionary()
+        excpt_msg = "to_dictionary() missing 1 required positional argument: 'self'"
+        self.assertEqual(str(excpt.exception), excpt_msg)
+
+    def test_Rectangle_d4(self):
+        """ Testing to_dictionary method: without self argument """
+
+        rect1 = Rectangle(10, 2, 1, 9)
+        my_dict = {'id': 1, 'width': 10, 'height': 2, 'x': 1, 'y': 9}
+        self.assertEqual(rect1.to_dictionary(), my_dict)
+        rect2 = Rectangle(1, 1)
+        rect2.update(**rect1.to_dictionary())
+        self.assertEqual(rect2.to_dictionary(), my_dict)
 
 if __name__ == '__main__':
     unittest.main()
