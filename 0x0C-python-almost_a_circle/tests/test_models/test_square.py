@@ -223,61 +223,37 @@ class TestBase(unittest.TestCase):
         excpt_msg = "area() missing 1 required positional argument: 'self'"
         self.assertEqual(str(excpt.exception), excpt_msg)
 
-    def test_Rectangle_c1(self):
+    def test_Square_c0(self):
         """ Testing display method: with only width and height """
 
         my_rect = Rectangle(1,1)
         with self.assertRaises(TypeError) as excpt:
-            Rectangle.display()
+            Square.display()
         excpt_msg = "display() missing 1 required positional argument: 'self'"
         self.assertEqual(str(excpt.exception), excpt_msg)
 
-    def test_Rectangle_c2(self):
+    def test_Square_c1(self):
         """ Testing display method: with only width and height
         x = 0 and y = 0 """
 
-        my_rect = Rectangle(1,1)
+        my_sqr = Square(1)
         my_IO = io.StringIO()
         with redirect_stdout(my_IO):
-            my_rect.display()
+            my_sqr.display()
         my_out = "#\n"
         self.assertEqual(my_IO.getvalue(), my_out)
 
-        my_rect.width = 5
+        my_sqr.size = 5
         my_IO = io.StringIO()
         with redirect_stdout(my_IO):
-            my_rect.display()
-        my_out = "#####\n"
+            my_sqr.display()
+        my_out = "#####\n#####\n#####\n#####\n#####\n"
         self.assertEqual(my_IO.getvalue(), my_out)
 
-        my_rect.height = 3
+        my_sqr.size = 10
         my_IO = io.StringIO()
         with redirect_stdout(my_IO):
-            my_rect.display()
-        my_out = "#####\n#####\n#####\n"
-        self.assertEqual(my_IO.getvalue(), my_out)
-
-        my_rect.width = 5
-        my_rect.height = 1
-        my_IO = io.StringIO()
-        with redirect_stdout(my_IO):
-            my_rect.display()
-        my_out = "#####\n"
-        self.assertEqual(my_IO.getvalue(), my_out)
-
-        my_rect.width = 1
-        my_rect.height = 5
-        my_IO = io.StringIO()
-        with redirect_stdout(my_IO):
-            my_rect.display()
-        my_out = "#\n#\n#\n#\n#\n"
-        self.assertEqual(my_IO.getvalue(), my_out)
-
-        my_rect.width = 10
-        my_rect.height = 10
-        my_IO = io.StringIO()
-        with redirect_stdout(my_IO):
-            my_rect.display()
+            my_sqr.display()
         my_out = "##########\n\
 ##########\n\
 ##########\n\
@@ -290,248 +266,199 @@ class TestBase(unittest.TestCase):
 ##########\n"
         self.assertEqual(my_IO.getvalue(), my_out)
 
-    def test_Rectangle_c3(self):
+    def test_Square_c2(self):
         """ Testing display method: x and y included """
 
-        my_rect = Rectangle(1,1, 1, 1)
+        my_sqr = Square(1, 1, 1)
         my_IO = io.StringIO()
         with redirect_stdout(my_IO):
-            my_rect.display()
+            my_sqr.display()
         my_out = "\n #\n"
         self.assertEqual(my_IO.getvalue(), my_out)
 
-        my_rect.width = 5
-        my_rect.height = 3
-        my_rect.x = 0
-        my_rect.y = 5
+        my_sqr.size = 5
+        my_sqr.x = 0
+        my_sqr.y = 5
         my_IO = io.StringIO()
         with redirect_stdout(my_IO):
-            my_rect.display()
-        my_out = "\n\n\n\n\n#####\n#####\n#####\n"
+            my_sqr.display()
+        my_out = "\n\n\n\n\n#####\n#####\n#####\n#####\n#####\n"
         self.assertEqual(my_IO.getvalue(), my_out)
 
-        my_rect.x = 5
-        my_rect.y = 0
+        my_sqr.x = 5
+        my_sqr.y = 0
         my_IO = io.StringIO()
         with redirect_stdout(my_IO):
-            my_rect.display()
-        my_out = "     #####\n     #####\n     #####\n"
+            my_sqr.display()
+        my_out = "     #####\n     #####\n     #####\n     #####\n     #####\n"
         self.assertEqual(my_IO.getvalue(), my_out)
 
-        my_rect.x = 3
-        my_rect.y = 3
+        my_sqr.x = 3
+        my_sqr.y = 3
         my_IO = io.StringIO()
         with redirect_stdout(my_IO):
-            my_rect.display()
-        my_out = "\n\n\n   #####\n   #####\n   #####\n"
+            my_sqr.display()
+        my_out = "\n\n\n   #####\n   #####\n   #####\n   #####\n   #####\n"
         self.assertEqual(my_IO.getvalue(), my_out)
 
-        my_rect.x = 18
-        my_rect.y = 10
+        my_sqr.x = 18
+        my_sqr.y = 10
         my_IO = io.StringIO()
         with redirect_stdout(my_IO):
-            my_rect.display()
+            my_sqr.display()
         my_out = "\n\n\n\n\n\n\n\n\n\n\
+                  #####\n\
+                  #####\n\
                   #####\n\
                   #####\n\
                   #####\n"
         self.assertEqual(my_IO.getvalue(), my_out)
 
-    def test_Rectangle_c4(self):
+    def test_Square_c3(self):
         """ Testing __str__: without passing self """
 
-        my_rect = Rectangle(1,1, 1, 1)
+        my_sqr = Square(1,1, 1, 1)
         with self.assertRaises(TypeError) as excpt:
-            Rectangle.__str__()
+            Square.__str__()
         excpt_msg = "__str__() missing 1 required positional argument: 'self'"
         self.assertEqual(str(excpt.exception), excpt_msg)
 
-    def test_Rectangle_c5(self):
+    def test_Square_c4(self):
         """ Testing __str__: with different attributes values """
 
-        my_rect = Rectangle(15,13)
-        my_out = "[Rectangle] (1) 0/0 - 15/13"
-        self.assertEqual(str(my_rect), my_out)
+        my_sqr = Square(15)
+        my_out = "[Square] (1) 0/0 - 15"
+        self.assertEqual(str(my_sqr), my_out)
 
-        my_rect = Rectangle(15,13, 10, 5)
-        my_out = "[Rectangle] (2) 10/5 - 15/13"
-        self.assertEqual(str(my_rect), my_out)
-        
-        my_rect = Rectangle(15,13, 3)
-        my_out = "[Rectangle] (3) 3/0 - 15/13"
-        self.assertEqual(str(my_rect), my_out)
-        
-        my_rect = Rectangle(15,13, 10, 5, 'superID')
-        my_out = "[Rectangle] (superID) 10/5 - 15/13"
-        self.assertEqual(str(my_rect), my_out)
+        my_sqr = Square(7,10, 5)
+        my_out = "[Square] (2) 10/5 - 7"
+        self.assertEqual(str(my_sqr), my_out)
 
-    def test_Rectangle_c6(self):
+        my_sqr = Square(6, 10, 5, 'superID')
+        my_out = "[Square] (superID) 10/5 - 6"
+        self.assertEqual(str(my_sqr), my_out)
+
+    def test_Square_c5(self):
         """ Testing update method: without self as an argument """
 
         with self.assertRaises(TypeError) as excpt:
-            Rectangle.update()
+            Square.update()
         excpt_msg = "update() missing 1 required positional argument: 'self'"
         self.assertEqual(str(excpt.exception), excpt_msg)
 
-    def test_Rectangle_c7(self):
+    def test_Square_c6(self):
         """ Testing update method (args): with differenct values """
 
-        rect1 = Rectangle(10, 10, 10, 10)
-        init_rect_dict = rect1.__dict__
-        rect1.update(89)
-        init_rect_dict['id'] = 89
-        self.assertEqual(rect1.__dict__, init_rect_dict)
-        rect1.update(89, 2)
-        init_rect_dict['_Rectangle__width'] = 2
-        self.assertEqual(rect1.__dict__, init_rect_dict)
-        rect1.update(89, 2, 3)
-        init_rect_dict['_Rectangle__height'] = 3
-        self.assertEqual(rect1.__dict__, init_rect_dict)
-        rect1.update(89, 2, 3, 4)
-        init_rect_dict['_Rectangle__x'] = 4
-        self.assertEqual(rect1.__dict__, init_rect_dict)
-        rect1.update(89, 2, 3, 4, 5)
-        init_rect_dict['_Rectangle__y'] = 5
-        self.assertEqual(rect1.__dict__, init_rect_dict)
+        sqr1 = Square(10, 10, 10)
+        init_sqr_dict = sqr1.__dict__
+        sqr1.update(89)
+        init_sqr_dict['id'] = 89
+        self.assertEqual(sqr1.__dict__, init_sqr_dict)
+        sqr1.update(89, 2)
+        init_sqr_dict['_Rectangle__width'] = 2
+        init_sqr_dict['_Rectangle__height'] = 2
+        self.assertEqual(sqr1.__dict__, init_sqr_dict)
+        sqr1.update(89, 2, 4)
+        init_sqr_dict['_Rectangle__x'] = 4
+        self.assertEqual(sqr1.__dict__, init_sqr_dict)
+        sqr1.update(89, 2, 4, 5)
+        init_sqr_dict['_Rectangle__y'] = 5
+        self.assertEqual(sqr1.__dict__, init_sqr_dict)
 
-    def test_Rectangle_c8(self):
+    def test_Square_c7(self):
         """ Testing update method (args): with bad values """
 
-        rect1 = Rectangle(10, 10, 10, 10)
+        sqr1 = Square(10, 10, 10)
+
         with self.assertRaises(TypeError) as excpt:
-            rect1.update(10, '1')
+            sqr1.update(10, '1')
         excpt_msg = "width must be an integer"
         self.assertEqual(str(excpt.exception), excpt_msg)
+
         with self.assertRaises(TypeError) as excpt:
-            rect1.update(10, 2, '3')
-        excpt_msg = "height must be an integer"
-        self.assertEqual(str(excpt.exception), excpt_msg)
-        with self.assertRaises(TypeError) as excpt:
-            rect1.update(10, 2, 3, '4')
+            sqr1.update(10, 3, '4')
         excpt_msg = "x must be an integer"
         self.assertEqual(str(excpt.exception), excpt_msg)
+
         with self.assertRaises(TypeError) as excpt:
-            rect1.update(89, 2, 3, 4, '5')
+            sqr1.update(89, 3, 4, '5')
         excpt_msg = "y must be an integer"
         self.assertEqual(str(excpt.exception), excpt_msg)
 
         rect1 = Rectangle(10, 10, 10, 10)
+
         with self.assertRaises(ValueError) as excpt:
-            rect1.update(10, -2)
+            sqr1.update(10, -3)
         excpt_msg = "width must be > 0"
         self.assertEqual(str(excpt.exception), excpt_msg)
+
         with self.assertRaises(ValueError) as excpt:
-            rect1.update(10, 2, -3)
-        excpt_msg = "height must be > 0"
-        self.assertEqual(str(excpt.exception), excpt_msg)
-        with self.assertRaises(ValueError) as excpt:
-            rect1.update(10, 2, 3, -4)
+            sqr1.update(10, 3, -4)
         excpt_msg = "x must be >= 0"
         self.assertEqual(str(excpt.exception), excpt_msg)
+
         with self.assertRaises(ValueError) as excpt:
-            rect1.update(89, 2, 3, 4, -5)
+            sqr1.update(89, 3, 4, -5)
         excpt_msg = "y must be >= 0"
         self.assertEqual(str(excpt.exception), excpt_msg)
 
-    def test_Rectangle_c9(self):
+    def test_Square_c8(self):
         """ Testing update method (kwargs): skipping kwargs """
 
-        rect1 = Rectangle(10, 10, 10, 10)
-        init_rect_dict = rect1.__dict__
-        rect1.update(89, 2, 3, 4, 5, id=13)
-        init_rect_dict['id'] = 89
-        self.assertEqual(rect1.__dict__, init_rect_dict)
-        rect1.update(89, 2, 3, 4, 5, width=13)
-        init_rect_dict['_Rectangle__width'] = 2
-        self.assertEqual(rect1.__dict__, init_rect_dict)
-        rect1.update(89, 2, 3, 4, 5, height=13)
-        init_rect_dict['_Rectangle__height'] = 3
-        self.assertEqual(rect1.__dict__, init_rect_dict)
-        rect1.update(89, 2, 3, 4, 5, x=13)
-        init_rect_dict['_Rectangle__x'] = 4
-        self.assertEqual(rect1.__dict__, init_rect_dict)
-        rect1.update(89, 2, 3, 4, 5, y=13)
-        init_rect_dict['_Rectangle__y'] = 5
-        self.assertEqual(rect1.__dict__, init_rect_dict)
+        sqr1 = Square(10, 10, 10)
+        sqr1.update(89, 5, 4, 5, id=13)
+        self.assertEqual(str(sqr1), "[Square] (89) 4/5 - 5")
+        sqr1.update(89, 5, 4, 5, size=13)
+        self.assertEqual(str(sqr1), "[Square] (89) 4/5 - 5")
+        sqr1.update(89, 5, 4, 5, x=13)
+        self.assertEqual(str(sqr1), "[Square] (89) 4/5 - 5")
+        sqr1.update(89, 5, 4, 5, y=13)
+        self.assertEqual(str(sqr1), "[Square] (89) 4/5 - 5")
 
-    def test_Rectangle_d0(self):
+    def test_Square_c9(self):
         """ Testing update method (kwargs): using kwargs only """
 
-        rect1 = Rectangle(10, 10, 10, 10)
-        init_rect_dict = rect1.__dict__
-        rect1.update(id=1)
-        init_rect_dict['id'] = 10
-        self.assertEqual(rect1.__dict__, init_rect_dict)
-        rect1.update(width=2)
-        init_rect_dict['_Rectangle__width'] = 2
-        self.assertEqual(rect1.__dict__, init_rect_dict)
-        rect1.update(height=3)
-        init_rect_dict['_Rectangle__height'] = 3
-        self.assertEqual(rect1.__dict__, init_rect_dict)
-        rect1.update(x=4)
-        init_rect_dict['_Rectangle__x'] = 4
-        self.assertEqual(rect1.__dict__, init_rect_dict)
-        rect1.update(y=5)
-        init_rect_dict['_Rectangle__y'] = 5
-        self.assertEqual(rect1.__dict__, init_rect_dict)
-        rect1.update(id=11, width=12, height=13, x=14, y=15)
-        self.assertEqual(rect1.id, 11)
-        self.assertEqual(rect1.width, 12)
-        self.assertEqual(rect1.height, 13)
-        self.assertEqual(rect1.x, 14)
-        self.assertEqual(rect1.y, 15)
-        rect1.update(height=11, y=12, width=13, id=14, x=15)
-        self.assertEqual(rect1.id, 14)
-        self.assertEqual(rect1.width, 13)
-        self.assertEqual(rect1.height, 11)
-        self.assertEqual(rect1.x, 15)
-        self.assertEqual(rect1.y, 12)
+        sqr1 = Square(10, 10, 10)
+        self.assertEqual(str(sqr1), "[Square] (1) 10/10 - 10")
+        sqr1.update(id=99)
+        self.assertEqual(str(sqr1), "[Square] (99) 10/10 - 10")
+        sqr1.update(size=2)
+        self.assertEqual(str(sqr1), "[Square] (99) 10/10 - 2")
+        sqr1.update(x=4)
+        self.assertEqual(str(sqr1), "[Square] (99) 4/10 - 2")
+        sqr1.update(y=5)
+        self.assertEqual(str(sqr1), "[Square] (99) 4/5 - 2")
+        sqr1.update(id=11, size=13, x=14, y=15)
+        self.assertEqual(str(sqr1), "[Square] (11) 14/15 - 13")
+        sqr1.update(y=12, size=13, id=14, x=15)
+        self.assertEqual(str(sqr1), "[Square] (14) 15/12 - 13")
 
-    def test_Rectangle_d1(self):
-        """ Testing update method (kwargs): using kwargs and args together """
-
-        rect1 = Rectangle(10, 10, 10, 10)
-        init_rect_dict = rect1.__dict__
-        rect1.update(13, width=2)
-        init_rect_dict['id'] = 13
-        init_rect_dict['_Rectangle__width'] = 2
-        self.assertEqual(rect1.__dict__, init_rect_dict)
-        rect1.update(13, 2, height=3)
-        init_rect_dict['_Rectangle__height'] = 3
-        self.assertEqual(rect1.__dict__, init_rect_dict)
-        rect1.update(13, 2, 3, x=4)
-        init_rect_dict['_Rectangle__x'] = 4
-        self.assertEqual(rect1.__dict__, init_rect_dict)
-        rect1.update(13, 2, 3, 4, y=5)
-        init_rect_dict['_Rectangle__y'] = 5
-        self.assertEqual(rect1.__dict__, init_rect_dict)
-
-    def test_Rectangle_d2(self):
+    def test_Square_d1(self):
         """ Testing update method (kwargs): passing bad keys """
 
-        rect1 = Rectangle(10, 10, 10, 10)
-        init_rect_dict = rect1.__dict__
-        rect1.update(13, blah=2)
-        init_rect_dict['id'] = 13
-        self.assertEqual(rect1.__dict__, init_rect_dict)
+        sqr1 = Square(10, 10, 10)
+        self.assertEqual(str(sqr1), "[Square] (1) 10/10 - 10")
+        sqr1.update(13, blah=2)
+        self.assertEqual(str(sqr1), "[Square] (13) 10/10 - 10")
+        
 
-    def test_Rectangle_d3(self):
+    def test_Square_d2(self):
         """ Testing to_dictionary method: without self argument """
 
         with self.assertRaises(TypeError) as excpt:
-            Rectangle.to_dictionary()
+            Square.to_dictionary()
         excpt_msg = "to_dictionary() missing 1 required positional argument: 'self'"
         self.assertEqual(str(excpt.exception), excpt_msg)
 
-    def test_Rectangle_d4(self):
+    def test_Square_d2(self):
         """ Testing to_dictionary method: without self argument """
 
-        rect1 = Rectangle(10, 2, 1, 9)
-        my_dict = {'id': 1, 'width': 10, 'height': 2, 'x': 1, 'y': 9}
-        self.assertEqual(rect1.to_dictionary(), my_dict)
-        rect2 = Rectangle(1, 1)
-        rect2.update(**rect1.to_dictionary())
-        self.assertEqual(rect2.to_dictionary(), my_dict)
+        sqr1 = Square(10, 11, 9)
+        my_dict = {'id': 1, 'size': 10, 'x': 11, 'y': 9}
+        self.assertEqual(sqr1.to_dictionary(), my_dict)
+        sqr2 = Square(1)
+        sqr2.update(**sqr1.to_dictionary())
+        self.assertEqual(sqr2.to_dictionary(), my_dict)
 
 if __name__ == '__main__':
     unittest.main()

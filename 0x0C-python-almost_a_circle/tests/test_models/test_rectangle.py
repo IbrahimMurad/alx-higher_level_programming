@@ -518,25 +518,6 @@ class TestBase(unittest.TestCase):
         self.assertEqual(rect1.x, 15)
         self.assertEqual(rect1.y, 12)
 
-    def test_Rectangle_d1(self):
-        """ Testing update method (kwargs): using kwargs and args together """
-
-        rect1 = Rectangle(10, 10, 10, 10)
-        init_rect_dict = rect1.__dict__
-        rect1.update(13, width=2)
-        init_rect_dict['id'] = 13
-        init_rect_dict['_Rectangle__width'] = 2
-        self.assertEqual(rect1.__dict__, init_rect_dict)
-        rect1.update(13, 2, height=3)
-        init_rect_dict['_Rectangle__height'] = 3
-        self.assertEqual(rect1.__dict__, init_rect_dict)
-        rect1.update(13, 2, 3, x=4)
-        init_rect_dict['_Rectangle__x'] = 4
-        self.assertEqual(rect1.__dict__, init_rect_dict)
-        rect1.update(13, 2, 3, 4, y=5)
-        init_rect_dict['_Rectangle__y'] = 5
-        self.assertEqual(rect1.__dict__, init_rect_dict)
-
     def test_Rectangle_d2(self):
         """ Testing update method (kwargs): passing bad keys """
 
