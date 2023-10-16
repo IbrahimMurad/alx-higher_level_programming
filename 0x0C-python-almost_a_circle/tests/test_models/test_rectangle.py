@@ -235,5 +235,22 @@ class TestBase(unittest.TestCase):
         self.assertEqual(my_rect.x, 13)
         self.assertEqual(my_rect.y, 14)
 
+    def test_Rectangle_b9(self):
+        """ checking area method """
+
+        my_rect = Rectangle(1, 2)
+        self.assertEqual(my_rect.area(), 1 * 2)
+        my_rect = Rectangle(100, 123)
+        self.assertEqual(my_rect.area(), 100 * 123)
+
+    def test_Rectangle_c0(self):
+        """ more checking for area method """
+
+        my_rect = Rectangle(1, 2)
+        with self.assertRaises(TypeError) as excpt:
+            Rectangle.area()
+        excpt_msg = "area() missing 1 required positional argument: 'self'"
+        self.assertEqual(str(excpt.exception), excpt_msg)
+
 if __name__ == '__main__':
     unittest.main()
