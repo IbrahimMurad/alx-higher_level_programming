@@ -41,7 +41,7 @@ class Base:
         else:
             my_list = [obj.to_dictionary() for obj in list_objs]
             with open(file_name, 'w', encoding="utf-8") as f:
-                json.dump(my_list, f)
+                f.write(json.dumps(list_objs))
 
     @staticmethod
     def from_json_string(json_string):
