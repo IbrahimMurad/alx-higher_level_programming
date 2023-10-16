@@ -381,8 +381,20 @@ class TestBase(unittest.TestCase):
         """ Testing __str__: with different attributes values """
 
         my_rect = Rectangle(15,13)
-        my_out = "[Rectangle] (1) 15/13 - 0/0"
-        self.assertEqual(str(my_rect), )
+        my_out = "[Rectangle] (1) 0/0 - 15/13"
+        self.assertEqual(str(my_rect), my_out)
+
+        my_rect = Rectangle(15,13, 10, 5)
+        my_out = "[Rectangle] (2) 10/5 - 15/13"
+        self.assertEqual(str(my_rect), my_out)
+        
+        my_rect = Rectangle(15,13, 3)
+        my_out = "[Rectangle] (3) 3/0 - 15/13"
+        self.assertEqual(str(my_rect), my_out)
+        
+        my_rect = Rectangle(15,13, 10, 5, 'superID')
+        my_out = "[Rectangle] (superID) 10/5 - 15/13"
+        self.assertEqual(str(my_rect), my_out)
 
 if __name__ == '__main__':
     unittest.main()
