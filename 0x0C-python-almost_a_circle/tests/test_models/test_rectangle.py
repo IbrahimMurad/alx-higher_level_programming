@@ -377,5 +377,12 @@ class TestBase(unittest.TestCase):
         excpt_msg = "__str__() missing 1 required positional argument: 'self'"
         self.assertEqual(str(excpt.exception), excpt_msg)
 
+    def test_Rectangle_c5(self):
+        """ Testing __str__: with different attributes values """
+
+        my_rect = Rectangle(15,13)
+        my_out = "[Rectangle] (1) 15/13 - 0/0"
+        self.assertEqual(str(my_rect), )
+
 if __name__ == '__main__':
     unittest.main()
