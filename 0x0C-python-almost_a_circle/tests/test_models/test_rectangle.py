@@ -1,14 +1,29 @@
 import unittest
+from models.base import Base
 from models.rectangle import Rectangle
 
 class TestBase(unittest.TestCase):
      
+    # setting up before and tearing down after each test
+
+    def setUp(self):
+        """ starts a new connection """
+
+        Base._Base__nb_objects = 0
+        pass
+
+    def tearDown(self):
+        """ Removes all the connections (restoring the initial state)"""
+
+        pass
+
+
     """ testing __init__ """
-    
+  
     # passing: width and height
     def test_Rectangle_a1(self):
         Rect1 = Rectangle(7, 9)
-        self.assertEqual(Rect1.id, 5)
+        self.assertEqual(Rect1.id, 1)
         self.assertEqual(Rect1.width, 7)
         self.assertEqual(Rect1.height, 9)
         self.assertEqual(Rect1.x, 0)
@@ -17,7 +32,7 @@ class TestBase(unittest.TestCase):
     # passing only width, height and x
     def test_Rectangle_a2(self):
         Rect2 = Rectangle(7, 9, 4)
-        self.assertEqual(Rect2.id, 6)
+        self.assertEqual(Rect2.id, 1)
         self.assertEqual(Rect2.width, 7)
         self.assertEqual(Rect2.height, 9)
         self.assertEqual(Rect2.x, 4)
@@ -26,7 +41,7 @@ class TestBase(unittest.TestCase):
     # passing only width, height x, and y
     def test_Rectangle_a3(self):
         Rect3 = Rectangle(7, 9, 4, 3)
-        self.assertEqual(Rect3.id, 7)
+        self.assertEqual(Rect3.id, 1)
         self.assertEqual(Rect3.width, 7)
         self.assertEqual(Rect3.height, 9)
         self.assertEqual(Rect3.x, 4)
