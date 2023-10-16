@@ -1,7 +1,8 @@
 import unittest
 from models.base import Base
 from models.rectangle import Rectangle
-from random import randrange
+from contextlib import redirect_stdout
+import io
 
 class TestBase(unittest.TestCase):
      
@@ -253,32 +254,72 @@ class TestBase(unittest.TestCase):
         excpt_msg = "area() missing 1 required positional argument: 'self'"
         self.assertEqual(str(excpt.exception), excpt_msg)
 
-    def test_Rectangle_c0(self):
-        '''Tests area() method compuation.'''
-        r = Rectangle(5, 6)
-        self.assertEqual(r.area(), 30)
-        w = randrange(10) + 1
-        h = randrange(10) + 1
-        r.width = w
-        r.height = h
-        self.assertEqual(r.area(), w * h)
-        w = randrange(10) + 1
-        h = randrange(10) + 1
-        r = Rectangle(w, h, 7, 8, 9)
-        self.assertEqual(r.area(), w * h)
-        w = randrange(10) + 1
-        h = randrange(10) + 1
-        r = Rectangle(w, h, y=7, x=8, id=9)
-        self.assertEqual(r.area(), w * h)
+    def test_Rectangle_c1(self):
+        """ Testing display method: with only width and height """
 
-        r1 = Rectangle(3, 2)
-        self.assertEqual(r1.area(), 6)
+        my_rect = Rectangle(1,1)
+        with self.assertRaises(TypeError) as excpt:
+            Rectangle.display()
+        excpt_msg = "display() missing 1 required positional argument: 'self'"
+        self.assertEqual(str(excpt.exception), excpt_msg)
 
-        r2 = Rectangle(2, 10)
-        self.assertEqual(r2.area(), 20)
+    def test_Rectangle_c2(self):
+        """ Testing display method: with only width and height
+        x = 0 and y = 0"""
 
-        r3 = Rectangle(8, 7, 0, 0, 12)
-        self.assertEqual(r3.area(), 56)
+        my_rect = Rectangle(1,1)
+        my_IO = io.StringIO()
+        with redirect_stdout(my_IO):
+            my_rect.display()
+        my_out = "#\n"
+        self.assertEqual(my_IO.getvalue(), my_out)
+
+        my_rect.width = 5
+        my_IO = io.StringIO()
+        with redirect_stdout(my_IO):
+            my_rect.display()
+        my_out = "#####\n"
+        self.assertEqual(my_IO.getvalue(), my_out)
+
+        my_rect.height = 3
+        my_IO = io.StringIO()
+        with redirect_stdout(my_IO):
+            my_rect.display()
+        my_out = "#####\n#####\n#####\n"
+        self.assertEqual(my_IO.getvalue(), my_out)
+
+        my_rect.width = 5
+        my_rect.height = 1
+        my_IO = io.StringIO()
+        with redirect_stdout(my_IO):
+            my_rect.display()
+        my_out = "#####\n"
+        self.assertEqual(my_IO.getvalue(), my_out)
+
+        my_rect.width = 1
+        my_rect.height = 5
+        my_IO = io.StringIO()
+        with redirect_stdout(my_IO):
+            my_rect.display()
+        my_out = "#\n#\n#\n#\n#\n"
+        self.assertEqual(my_IO.getvalue(), my_out)
+
+        my_rect.width = 10
+        my_rect.height = 10
+        my_IO = io.StringIO()
+        with redirect_stdout(my_IO):
+            my_rect.display()
+        my_out = "##########\n\
+##########\n\
+##########\n\
+##########\n\
+##########\n\
+##########\n\
+##########\n\
+##########\n\
+##########\n\
+##########\n"
+        self.assertEqual(my_IO.getvalue(), my_out)
 
 if __name__ == '__main__':
     unittest.main()
