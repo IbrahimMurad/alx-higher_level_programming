@@ -32,10 +32,11 @@ class Base:
 
     @classmethod
     def save_to_file(cls, list_objs):
-        '''Saves jsonified object to file.'''
+        """ writes the JSON string representation of list_objs to a file """
+
         if list_objs is not None:
-            list_objs = [o.to_dictionary() for o in list_objs]
-        with open("{}.json".format(cls.__name__), "w", encoding="utf-8") as f:
+            my_list = [obj.to_dictionary() for obj in list_objs]
+        with open("{}.json".format(cls.__name__), 'w', encoding="utf-8") as f:
             f.write(cls.to_json_string(list_objs))
 
     @staticmethod
