@@ -143,5 +143,5 @@ class Rectangle(Base):
         """ returns the dictionary representation of a Rectangle """
 
         my_dict = {'id': self.id, 'width': self.width, 'height': self.height}
-        my_dict.update({'x': self.x, 'y':self.y})
+        my_dict.update({'x': self.x, 'y': self.y})
         return my_dict
