@@ -53,7 +53,10 @@ class Base:
     def create(cls, **dictionary):
         """ returns an instance with all attributes already set """
 
-        dummy = cls(1, 1)
+        if cls is None:
+            dummy = None
+        else:
+            dummy = cls(1, 1)
         dummy.update(**dictionary)
         return dummy
 
