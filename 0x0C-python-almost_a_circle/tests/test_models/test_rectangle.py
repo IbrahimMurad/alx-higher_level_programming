@@ -396,5 +396,36 @@ class TestBase(unittest.TestCase):
         my_out = "[Rectangle] (superID) 10/5 - 15/13"
         self.assertEqual(str(my_rect), my_out)
 
+    def test_Rectangle_c6(self):
+        """ Testing update method: without self as an argument """
+
+        with self.assertRaises(TypeError) as excpt:
+            Rectangle.update()
+        excpt_msg = "update() missing 1 required positional argument: 'self'"
+        self.assertEqual(str(excpt.exception), excpt_msg)
+
+    def test_Rectangle_c7(self):
+        """ Testing update method: with differenct values """
+
+        rect1 = Rectangle(10, 10, 10, 10)
+        init_rect_dict = rect1.__dict__
+        rect1.update(89)
+        init_rect_dict['id'] = 89
+        self.assertEqual(rect1.__dict__, init_rect_dict)
+        rect1.update(89, 2)
+        init_rect_dict['_Rectangle__width'] = 2
+        self.assertEqual(rect1.__dict__, init_rect_dict)
+        rect1.update(89, 2, 3)
+        init_rect_dict['_Rectangle__height'] = 3
+        self.assertEqual(rect1.__dict__, init_rect_dict)
+        rect1.update(89, 2, 3, 4)
+        init_rect_dict['_Rectangle__x'] = 4
+        self.assertEqual(rect1.__dict__, init_rect_dict)
+        rect1.update(89, 2, 3, 4, 5)
+        init_rect_dict['_Rectangle__y'] = 5
+        self.assertEqual(rect1.__dict__, init_rect_dict)
+
+
+
 if __name__ == '__main__':
     unittest.main()
