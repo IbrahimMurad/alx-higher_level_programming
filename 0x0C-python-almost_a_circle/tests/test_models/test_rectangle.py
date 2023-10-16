@@ -321,5 +321,53 @@ class TestBase(unittest.TestCase):
 ##########\n"
         self.assertEqual(my_IO.getvalue(), my_out)
 
+    def test_Rectangle_c3(self):
+        """ Testing display method: x and y included """
+
+        my_rect = Rectangle(1,1, 1, 1)
+        my_IO = io.StringIO()
+        with redirect_stdout(my_IO):
+            my_rect.display()
+        my_out = "\n #\n"
+        self.assertEqual(my_IO.getvalue(), my_out)
+
+        my_rect.width = 5
+        my_rect.height = 3
+        my_rect.x = 0
+        my_rect.y = 5
+        my_IO = io.StringIO()
+        with redirect_stdout(my_IO):
+            my_rect.display()
+        my_out = "\n\n\n\n\n#####\n#####\n#####\n"
+        self.assertEqual(my_IO.getvalue(), my_out)
+
+        my_rect.x = 5
+        my_rect.y = 0
+        my_IO = io.StringIO()
+        with redirect_stdout(my_IO):
+            my_rect.display()
+        my_out = "     #####\n     #####\n     #####\n"
+        self.assertEqual(my_IO.getvalue(), my_out)
+
+        my_rect.x = 3
+        my_rect.y = 3
+        my_IO = io.StringIO()
+        with redirect_stdout(my_IO):
+            my_rect.display()
+        my_out = "\n\n\n   #####\n   #####\n   #####\n"
+        self.assertEqual(my_IO.getvalue(), my_out)
+
+        my_rect.x = 18
+        my_rect.y = 10
+        my_IO = io.StringIO()
+        with redirect_stdout(my_IO):
+            my_rect.display()
+        my_out = "\n\n\n\n\n\n\n\n\n\n\
+                  #####\n\
+                  #####\n\
+                  #####\n"
+        self.assertEqual(my_IO.getvalue(), my_out)
+
+
 if __name__ == '__main__':
     unittest.main()
