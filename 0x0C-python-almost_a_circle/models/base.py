@@ -2,7 +2,10 @@
 """ In this module, we define Base class
 that has a private attribute and a constructor
 """
-json = __import__('json')
+from models.rectangle import Rectangle
+from models.square import Square
+import json
+
 
 
 class Base:
@@ -53,10 +56,12 @@ class Base:
     def create(cls, **dictionary):
         """ returns an instance with all attributes already set """
 
-        if cls is None:
-            dummy = None
+        if cls is Rectangle:
+            dummy = Rectangle(1, 1)
+        elif cls is Square:
+            dummy = Square(1)
         else:
-            dummy = cls(1, 1)
+            dummy = None
         dummy.update(**dictionary)
         return dummy
 
