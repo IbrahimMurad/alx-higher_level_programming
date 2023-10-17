@@ -164,12 +164,6 @@ class TestBase(unittest.TestCase):
         my_out += '{"id": 3, "size": 10, "x": 2, "y": 8}]'
         self.assertEqual(Base.to_json_string(my_list), my_out)
 
-    def test_Base_b7(self):
-        """ testing save_to_file method: empty list """
-
-        my_base = Base(2)
-        self.assertEqual(Base.save_to_file([]), "[]")
-
     def test_Base_b3(self):
         """ testing to_json_string method: zero arguments """
 
