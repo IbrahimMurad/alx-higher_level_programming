@@ -5,7 +5,6 @@ that has a private attribute and a constructor
 import json
 
 
-
 class Base:
     """ This class will be the “base”
     of all other classes in this project.
@@ -56,6 +55,7 @@ class Base:
 
         from models.rectangle import Rectangle
         from models.square import Square
+
         if cls is Rectangle:
             dummy = Rectangle(1, 1)
         elif cls is Square:
