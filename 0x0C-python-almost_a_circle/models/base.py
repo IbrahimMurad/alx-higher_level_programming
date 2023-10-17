@@ -2,8 +2,6 @@
 """ In this module, we define Base class
 that has a private attribute and a constructor
 """
-from models.rectangle import Rectangle
-from models.square import Square
 import json
 
 
@@ -56,6 +54,8 @@ class Base:
     def create(cls, **dictionary):
         """ returns an instance with all attributes already set """
 
+        from models.rectangle import Rectangle
+        from models.square import Square
         if cls is Rectangle:
             dummy = Rectangle(1, 1)
         elif cls is Square:
