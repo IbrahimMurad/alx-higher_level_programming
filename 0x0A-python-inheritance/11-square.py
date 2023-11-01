@@ -1,0 +1,33 @@
+#!/usr/bin/python3
+""" In this module we define a class that
+inherits from Rectangle class
+"""
+
+Rectangle = __import__("9-rectangle").Rectangle
+
+
+class Square(Rectangle):
+    """ This class inherits from Rectangle
+    has Instantiation function
+    implement area
+    """
+
+    def __init__(self, size):
+        """ Intializes the size of the square
+        """
+
+        self.integer_validator("size", size)
+        super().__init__(size, size)
+
+    def area(self):
+        """ returns the area of the square (size x size)
+        """
+
+        return super().area()
+
+    def __str__(self):
+        """ returns a string if str() is used
+        the string: [rectangle] <width>/<height>
+        """
+
+        return super().__str__()
