@@ -1,0 +1,33 @@
+This document uses doctest to test say_my_name function
+
+First, we import the function
+>>> say_my_name = __import__('3-say_my_name').say_my_name
+
+Now, we try the function
+
+>>> say_my_name("ibrahim", "morad")
+My name is ibrahim morad
+
+passing first_name as non string
+
+>>> say_my_name(3, "ibrahim")
+Traceback (most recent call last):
+...
+TypeError: first_name must be a string
+
+passing last_name as non string
+
+>>> say_my_name("ibrahim", 3)
+Traceback (most recent call last):
+...
+TypeError: last_name must be a string
+
+ignoring last_name
+
+>>> say_my_name("ibrahim",)
+My name is ibrahim 
+
+passing a char
+
+>>> say_my_name("ibrahim", 'M')
+My name is ibrahim M

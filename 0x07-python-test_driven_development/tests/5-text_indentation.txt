@@ -1,0 +1,26 @@
+This document uses doctest to test the function text_indentation
+
+First, we import the function from the module
+
+>>> text_indentation = __import__("5-text_indentation").text_indentation
+
+try the function
+
+>>> text_indentation("1.  Python is awsome. 2  : Is it better than C? I do not think so")
+1
+<BLANKLINE>
+Python is awsome
+<BLANKLINE>
+2
+<BLANKLINE>
+Is it better than C
+<BLANKLINE>
+I do not think so
+
+Now, we try a non-string
+
+>>> text_indentation(-1)
+Traceback (most recent call last):
+...
+TypeError: text must be a string
+
