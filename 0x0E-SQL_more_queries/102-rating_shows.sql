@@ -1,3 +1,8 @@
+-- Active: 1702391851621@@127.0.0.1@3306@hbtn_0d_tvshows_rate
 -- lists all shows from hbtn_0d_tvshows_rate by their rating
-WITH rating_table AS (SELECT show_id, SUM(rate) AS rating FROM tv_show_ratings GROUP BY show_id)
-SELECT tv_shows.title, rating_table.rating FROM tv_shows JOIN rating_table ON rating_table.show_id = tv_shows.id ORDER BY rating DESC;
+SELECT tv_shows.title, SUM(tv_show_ratings.rate) AS rating
+FROM tv_shows
+	JOIN tv_show_ratings
+	ON tv_shows.id = tv_show_ratings.show_id
+GROUP BY tv_shows.title
+ORDER BY rating DESC;
