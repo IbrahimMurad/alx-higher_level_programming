@@ -1,9 +1,9 @@
 #!/usr/bin/node
 
 const myList = process.argv.slice(2).sort();
-
-if (myList.length === 0) {
+const listLength = myList.length;
+if (listLength === 0) {
   console.log(0);
 } else {
-  console.log(myList);
+  console.log(myList[listLength - 2]);
 }
