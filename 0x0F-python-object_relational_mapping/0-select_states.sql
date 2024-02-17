@@ -10,3 +10,6 @@ SELECT states.id , states.name FROM states WHERE states.name = 'Arizona';
 TRUNCATE TABLE states;
 SELECT * FROM states;
 DROP TABLE states;
+
+
+, 'root', '42724464', 'hbtn_0e_0_usa', "Arizona'; TRUNCATE TABLE states ; SELECT * FROM states WHERE name = '"

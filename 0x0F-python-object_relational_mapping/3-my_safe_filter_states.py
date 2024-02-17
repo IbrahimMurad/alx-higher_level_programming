@@ -12,7 +12,7 @@ if __name__ == "__main__":
                          passwd=sys.argv[2], db=sys.argv[3], charset="utf8")
     cur = db.cursor()
     query_statement = "SELECT * FROM states\
- WHERE states.name = '{}'".format(sys.argv[4])
+ WHERE states.name = '{}'".format(sys.argv[4].split(";")[0].split("'")[0])
     cur.execute(query_statement)
     rows = cur.fetchall()
     for row in rows:
