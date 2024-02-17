@@ -1,7 +1,10 @@
 #!/usr/bin/python3
 
-"""This script sets a connection with a mysql database
-and retrieves some data
+"""This script lists all the states in from database hbtn_0e_0_usa
+the user is passed as the first argument,
+the passowrd is passed as the second argument and
+the database name is passed as the third argument.
+
 """
 import sys
 import MySQLdb
