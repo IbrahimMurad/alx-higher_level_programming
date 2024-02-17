@@ -7,4 +7,6 @@ CREATE TABLE IF NOT EXISTS states (
 );
 INSERT INTO states (name) VALUES ("California"), ("Arizona"), ("Texas"), ("New York"), ("Nevada");
 SELECT states.id , states.name FROM states WHERE states.name = 'Arizona';
+TRUNCATE TABLE states;
+SELECT * FROM states;
 DROP TABLE states;
