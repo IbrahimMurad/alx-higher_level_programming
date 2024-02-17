@@ -1,5 +1,8 @@
 #!/usr/bin/python3
 
+"""This script sets a connection with a mysql database
+and retrieves some data
+"""
 import sys
 import MySQLdb
 
