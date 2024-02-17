@@ -14,5 +14,6 @@ if __name__ == "__main__":
     query_statement = "SELECT * FROM states\
  WHERE states.name = '{}'".format(sys.argv[4])
     cur.execute(query_statement)
-    rows = cur.fetchone()
-    print(rows)
+    rows = cur.fetchall()
+    for row in rows:
+        print(row)
