@@ -19,5 +19,5 @@ if __name__ == "__main__":
         City.name
     ).outerjoin(City).order_by(City.id).all()
     for city in cities:
-        print("{}: ({}) {}".format(city[0], city.id, city.name))
+        print("{}: ({}) {}".format(city[0], city[1], city[2]))
     session.close()
