@@ -21,4 +21,4 @@ INSERT INTO cities (state_id, name) VALUES (3, "Dallas"), (3, "Houston"), (3, "A
 INSERT INTO cities (state_id, name) VALUES (4, "New York");
 INSERT INTO cities (state_id, name) VALUES (5, "Las Vegas"), (5, "Reno"), (5, "Henderson"), (5, "Carson City");
 
-SELECT states.name, cities.id, cities.name FROM states LEFT OUTER JOIN cities ON states.id = cities.state_id;
+SELECT states.name, cities.id, cities.name FROM states JOIN cities ON states.id = cities.state_id;
