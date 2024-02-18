@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """ This module defines a calss named State
 and uses sqlalchemy to connect it to a table states
 """
