@@ -17,5 +17,5 @@ if __name__ == "__main__":
         state = session.query(State).where(State.name == myState).one()
         print("{}".format(state.id))
     except Exception:
-        print("Nothing")
+        print("Not found")
     session.close()
