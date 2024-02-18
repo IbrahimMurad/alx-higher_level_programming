@@ -14,6 +14,6 @@ if __name__ == "__main__":
     try:
         state = session.query(State).where(State.id == 1).one()
         print("{}: {}".format(state.id, state.name))
-    except:
+    except Exception:
         print("Nothing")
     session.close()
