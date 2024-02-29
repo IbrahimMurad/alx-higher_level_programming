@@ -1,2 +1,2 @@
-O(1)
-O(n2)
+O(nlog(n))
+O(nlog(n))
