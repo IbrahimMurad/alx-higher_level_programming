@@ -6,7 +6,4 @@ that returns the peak inside a list"""
 def find_peak(my_list=list):
     """ returns the peak value in my_list """
 
-    if len(my_list) == 0:
-        return None
-    else:
-        return sorted(my_list)[-1]
+    return max(my_list, default=None)
