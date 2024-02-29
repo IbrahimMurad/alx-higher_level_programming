@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """In this module, we define find_peak function
 that returns the peak inside a list"""
 
