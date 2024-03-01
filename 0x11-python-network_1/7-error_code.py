@@ -12,5 +12,5 @@ if __name__ == "__main__":
         req = requests.post(sys.argv[1])
         req.raise_for_status()
         print(req.text)
-    except requests.HTTPError:
+    except requests.exceptions.HTTPError:
         print("Error code: {}".format(req.status_code))
