@@ -9,4 +9,7 @@ if __name__ == "__main__":
     ses = requests.Session()
     ses.auth = (sys.argv[1], sys.argv[2])
     res = ses.get('https://api.github.com/user')
-    print("{}".format(res.json()['id']))
+    if 'id' in res.json().keys():
+        print("{}".format(res.json()['id']))
+    else:
+        print('None')
