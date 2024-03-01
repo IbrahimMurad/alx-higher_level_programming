@@ -14,7 +14,11 @@ if __name__ == "__main__":
     url += sys.argv[1] + '/' + sys.argv[2] + '/commits'
     response = requests.get(url)
     com_list = response.json()
+    counter = 0
     for commit in com_list:
+        counter += 1
         sha = commit['sha']
-        author_name = commit['commit']['committer']['name']
+        author_name = commit['commit']['author']['name']
         print("{}: {}".format(sha, author_name))
+        if counter == 10:
+            break
