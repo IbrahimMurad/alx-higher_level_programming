@@ -9,7 +9,7 @@ import sys
 
 if __name__ == "__main__":
     try:
-        req = requests.post(sys.argv[1])
+        req = requests.get(sys.argv[1])
         req.raise_for_status()
         print(req.text)
     except requests.exceptions.HTTPError:
