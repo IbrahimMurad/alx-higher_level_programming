@@ -8,5 +8,5 @@ import sys
 
 if __name__ == "__main__":
     parameters = {"email": sys.argv[2]}
-    req = requests.post(sys.argv[1], params=parameters)
+    req = requests.get(sys.argv[1], data=parameters)
     print("{}".format(req.text))
