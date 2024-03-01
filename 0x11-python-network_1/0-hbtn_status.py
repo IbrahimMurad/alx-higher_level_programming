@@ -3,7 +3,8 @@
 import urllib.request
 
 if __name__ == "__main__":
-    with urllib.request.urlopen('https://alx-intranet.hbtn.io/status') as response:
+    my_url = 'https://alx-intranet.hbtn.io/status'
+    with urllib.request.urlopen(my_url) as response:
         cont = response.read()
         print("Body response:")
         print("\t- type: {}".format(type(cont)))
