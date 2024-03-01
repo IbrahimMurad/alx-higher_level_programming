@@ -9,7 +9,7 @@ import sys
 
 if __name__ == "__main__":
     req = requests.post(sys.argv[1])
-    if req.status_code >= 400:
-        print("Error code: {}".format(req.status_code))
+    if req.raise_for_status() is None:
+        print(req.text)
     else:
-        print("{}".format(req.text))
+        print("Error code: {}".format(req.status_code))
