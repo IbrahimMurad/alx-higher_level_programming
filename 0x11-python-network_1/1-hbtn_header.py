@@ -1,8 +1,10 @@
 #!/usr/bin/python3
 """ This module sends a request to a URL passed as an argument
-and displays the value of the X-Request-Id variable found in the header of the response"""
+and displays the value of the X-Request-Id variable found in
+the header of the response"""
 
-import urllib.request, sys
+import urllib.request
+import sys
 
 if __name__ == "__main__":
     my_url = sys.argv[1]
