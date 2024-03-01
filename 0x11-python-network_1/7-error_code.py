@@ -8,8 +8,9 @@ import requests
 import sys
 
 if __name__ == "__main__":
-    req = requests.post(sys.argv[1])
-    if req.raise_for_status() is None:
+    try:
+        req = requests.post(sys.argv[1])
+        req.raise_for_status()
         print(req.text)
-    else:
+    except requests.HTTPError:
         print("Error code: {}".format(req.status_code))
