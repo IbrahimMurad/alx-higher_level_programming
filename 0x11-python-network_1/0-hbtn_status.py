@@ -2,8 +2,10 @@
 """ This script fetches https://alx-intranet.hbtn.io/status"""
 import urllib.request
 
-
-with urllib.request.urlopen('https://alx-intranet.hbtn.io/status') as response:
-    print("Body response:")
-    for header in response.headers:
-        print("\t- {}".format(header))
+if __name__ == "__main__":
+    with urllib.request.urlopen('https://alx-intranet.hbtn.io/status') as response:
+        cont = response.read()
+        print("Body response:")
+        print("\t- type: {}".format(type(cont)))
+        print("\t- content: {}".format(cont))
+        print("\t- utf8 content: {}".format(cont.decode()))
