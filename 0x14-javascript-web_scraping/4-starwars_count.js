@@ -2,7 +2,6 @@
 
 const request = require('request');
 const theURL = process.argv[2];
-const WedgeAntilles = 'https://swapi-api.alx-tools.com/api/people/18/';
 let count = 0;
 
 request(theURL, (error, response, body) => {
