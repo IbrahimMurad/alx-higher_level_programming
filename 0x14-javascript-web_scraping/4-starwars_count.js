@@ -12,7 +12,7 @@ request(theURL, (error, response, body) => {
     const films = JSON.parse(body).results;
     for (const film of films) {
       for (const character of film.characters) {
-        if (WedgeAntilles === character) {
+        if (character.endsWith('/18/')) {
           count++;
         }
       }
